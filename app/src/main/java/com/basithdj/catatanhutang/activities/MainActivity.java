@@ -1,9 +1,7 @@
-package com.basithdj.catatanhutang;
+package com.basithdj.catatanhutang.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,14 +12,29 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.basithdj.catatanhutang.hutang.CreateHutangActivity;
+import com.basithdj.catatanhutang.R;
+import com.basithdj.catatanhutang.activities.hutang.CreateHutangActivity;
 
-public class MainActivity extends AppCompatActivity
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+
+public class
+MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        RealmConfiguration configuration = new RealmConfiguration.Builder(this)
+                .name(Realm.DEFAULT_REALM_NAME)
+                .schemaVersion(0)
+                .deleteRealmIfMigrationNeeded()
+                .build();
+
+        Realm.setDefaultConfiguration(configuration);
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

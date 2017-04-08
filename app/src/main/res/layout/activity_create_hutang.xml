@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.basithdj.catatanhutang.hutang.CreateHutangActivity"
+    tools:context=".activities.hutang.CreateHutangActivity"
     android:padding="20dp">
 
     <EditText
+        android:id="@+id/editTextSiapa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Siapa?"/>
@@ -26,24 +26,27 @@
         android:orientation="horizontal"
         >
         <RadioButton
+            android:id="@+id/radioButtonSaya"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Saya"/>
 
         <RadioButton
-            android:id="@+id/radioButton"
+            android:id="@+id/radioButtonDia"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mereka" />
+            android:text="Dia" />
     </RadioGroup>
 
     <EditText
+        android:id="@+id/editTextJumlah"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Jumlah (Rp)"
         android:inputType="numberDecimal"/>
 
     <EditText
+        android:id="@+id/editTextDeskripsi"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:gravity="left"
@@ -52,6 +55,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Simpan"/>
+        android:text="Simpan"
+        android:onClick="simpanCatatanHutang"/>
 
 </LinearLayout>
