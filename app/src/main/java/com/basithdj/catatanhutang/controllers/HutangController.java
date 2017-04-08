@@ -2,7 +2,7 @@ package com.basithdj.catatanhutang.controllers;
 
 import android.util.Log;
 
-import com.basithdj.catatanhutang.activities.MainActivity;
+import com.basithdj.catatanhutang.views.activities.MainActivity;
 import com.basithdj.catatanhutang.models.Hutang;
 
 import io.realm.Realm;

@@ -1,4 +1,4 @@
-package com.basithdj.catatanhutang.activities.hutang;
+package com.basithdj.catatanhutang.views.activities.hutang;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

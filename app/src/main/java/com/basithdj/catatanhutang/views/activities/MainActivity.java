@@ -1,8 +1,7 @@
-package com.basithdj.catatanhutang.activities;
+package com.basithdj.catatanhutang.views.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,7 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.basithdj.catatanhutang.R;
-import com.basithdj.catatanhutang.activities.hutang.CreateHutangActivity;
+import com.basithdj.catatanhutang.views.activities.hutang.CreateHutangActivity;
 import com.basithdj.catatanhutang.controllers.HutangController;
 import com.basithdj.catatanhutang.models.Hutang;
 
