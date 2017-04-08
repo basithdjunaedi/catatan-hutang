@@ -64,7 +64,8 @@ MainActivity extends AppCompatActivity
         listViewCatatanHutang.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                new HutangDialog(MainActivity.this).show();
+                HutangAdapter adapter = (HutangAdapter) listViewCatatanHutang.getAdapter();
+                new HutangDialog(MainActivity.this, (Hutang) adapter.getItem(position)).show();
             }
         });
         hutangAdapter = new HutangAdapter(this);
