@@ -29,7 +29,7 @@ public class CreateHutangActivity extends AppCompatActivity {
 
     public void simpanCatatanHutang (View v) {
         HutangController.create(
-            editTextSiapa.getText().toString(), radioButtonSaya.isSelected(), Double.parseDouble(editTextJumlah.getText().toString()), editTextDeskripsi.getText().toString()
+            editTextSiapa.getText().toString(), radioButtonSaya.isSelected(), Integer.parseInt(editTextJumlah.getText().toString()), editTextDeskripsi.getText().toString()
         );
 
         finish();

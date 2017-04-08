@@ -13,13 +13,13 @@ public class Hutang extends RealmObject {
 
     private String siapa;
     private boolean saya_hutang;
-    private double jumlah;
+    private int jumlah;
     private String deskripsi;
 
     public Hutang () {
     }
 
-    public Hutang(int id, String siapa, boolean saya_hutang, double jumlah, String deskripsi) {
+    public Hutang(int id, String siapa, boolean saya_hutang, int jumlah, String deskripsi) {
         this.id = id;
         this.siapa = siapa;
         this.saya_hutang = saya_hutang;
@@ -51,11 +51,11 @@ public class Hutang extends RealmObject {
         this.saya_hutang = saya_hutang;
     }
 
-    public double getJumlah() {
+    public int getJumlah() {
         return jumlah;
     }
 
-    public void setJumlah(double jumlah) {
+    public void setJumlah(int jumlah) {
         this.jumlah = jumlah;
     }
 

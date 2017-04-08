@@ -12,6 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.basithdj.catatanhutang.R;
 import com.basithdj.catatanhutang.activities.hutang.CreateHutangActivity;
@@ -20,12 +22,14 @@ import com.basithdj.catatanhutang.models.Hutang;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
+import io.realm.RealmResults;
 
 public class
 MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     public static final String LOG_TITLE = "catatan_hutang";
+    private ListView listViewCatatanHutang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +37,7 @@ MainActivity extends AppCompatActivity
 
         RealmConfiguration configuration = new RealmConfiguration.Builder(this)
                 .name(Realm.DEFAULT_REALM_NAME)
-                .schemaVersion(0)
+                .schemaVersion(1)
                 .deleteRealmIfMigrationNeeded()
                 .build();
 
@@ -51,16 +55,29 @@ MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        listViewCatatanHutang = (ListView) findViewById(R.id.listViewCatatanHutang);
+    }
+
+    private void loadCatatanHutang() {
+        String hutangs[];
+        RealmResults<Hutang> hutangsFromRealm = HutangController.getAll();
+
+        hutangs = new String[hutangsFromRealm.size()];
+        int i = 0;
+        for (Hutang h : hutangsFromRealm) {
+            hutangs[i++] = h.getSiapa() + ": " +h.getJumlah();
+        }
+
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, R.layout.hutang_listview, hutangs);
+        listViewCatatanHutang.setAdapter(arrayAdapter);
     }
 
     @Override
     protected void onPostResume() {
         super.onPostResume();
 
-        Log.d(LOG_TITLE, "hello! im back!");
-        for (Hutang hutang : HutangController.getAll()) {
-            Log.d(LOG_TITLE, hutang.toString());
-        }
+        loadCatatanHutang();
     }
 
     @Override

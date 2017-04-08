@@ -14,7 +14,7 @@ import io.realm.RealmResults;
 
 public class HutangController extends RealmController {
 
-    public static void create (final String siapa, final boolean saya_hutang, final double jumlah, final String deskripsi) {
+    public static void create (final String siapa, final boolean saya_hutang, final int jumlah, final String deskripsi) {
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
