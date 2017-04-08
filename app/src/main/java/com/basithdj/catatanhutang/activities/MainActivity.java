@@ -2,6 +2,7 @@ package com.basithdj.catatanhutang.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,6 +15,8 @@ import android.view.MenuItem;
 
 import com.basithdj.catatanhutang.R;
 import com.basithdj.catatanhutang.activities.hutang.CreateHutangActivity;
+import com.basithdj.catatanhutang.controllers.HutangController;
+import com.basithdj.catatanhutang.models.Hutang;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -22,6 +25,7 @@ public class
 MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    public static final String LOG_TITLE = "catatan_hutang";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +51,16 @@ MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+
+        Log.d(LOG_TITLE, "hello! im back!");
+        for (Hutang hutang : HutangController.getAll()) {
+            Log.d(LOG_TITLE, hutang.toString());
+        }
     }
 
     @Override

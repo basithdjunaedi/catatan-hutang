@@ -1,8 +1,12 @@
 package com.basithdj.catatanhutang.controllers;
 
+import android.util.Log;
+
+import com.basithdj.catatanhutang.activities.MainActivity;
 import com.basithdj.catatanhutang.models.Hutang;
 
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 /**
  * Created by basithdj on 4/8/17.
@@ -18,8 +22,14 @@ public class HutangController extends RealmController {
 
                 Hutang hutang = new Hutang(lastId + 1, siapa, saya_hutang, jumlah, deskripsi);
 
-                System.out.println(hutang.toString());
+                realm.copyToRealm(hutang);
+                Log.d(MainActivity.LOG_TITLE, hutang.toString());
             }
         });
+
+    }
+
+    public static RealmResults<Hutang> getAll () {
+        return realm.where(Hutang.class).findAllSorted("id", false);
     }
 }
