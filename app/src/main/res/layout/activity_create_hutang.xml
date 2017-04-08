@@ -29,7 +29,8 @@
             android:id="@+id/radioButtonSaya"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Saya"/>
+            android:text="Saya"
+            android:checked="true"/>
 
         <RadioButton
             android:id="@+id/radioButtonDia"

@@ -11,13 +11,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.basithdj.catatanhutang.R;
 import com.basithdj.catatanhutang.views.activities.hutang.CreateHutangActivity;
 import com.basithdj.catatanhutang.controllers.HutangController;
 import com.basithdj.catatanhutang.models.Hutang;
+import com.basithdj.catatanhutang.views.adapters.HutangAdapter;
+import com.basithdj.catatanhutang.views.dialogs.HutangDialog;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -29,6 +33,7 @@ MainActivity extends AppCompatActivity
 
     public static final String LOG_TITLE = "catatan_hutang";
     private ListView listViewCatatanHutang;
+    private HutangAdapter hutangAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,20 +61,18 @@ MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         listViewCatatanHutang = (ListView) findViewById(R.id.listViewCatatanHutang);
+        listViewCatatanHutang.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                new HutangDialog(MainActivity.this).show();
+            }
+        });
+        hutangAdapter = new HutangAdapter(this);
     }
 
     private void loadCatatanHutang() {
-        String hutangs[];
-        RealmResults<Hutang> hutangsFromRealm = HutangController.getAll();
-
-        hutangs = new String[hutangsFromRealm.size()];
-        int i = 0;
-        for (Hutang h : hutangsFromRealm) {
-            hutangs[i++] = h.getSiapa() + ": " +h.getJumlah();
-        }
-
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, R.layout.hutang_listview, hutangs);
-        listViewCatatanHutang.setAdapter(arrayAdapter);
+        hutangAdapter.refresh();
+        listViewCatatanHutang.setAdapter(hutangAdapter);
     }
 
     @Override

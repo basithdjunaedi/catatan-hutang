@@ -23,13 +23,12 @@ public class CreateHutangActivity extends AppCompatActivity {
         editTextJumlah = (EditText) findViewById(R.id.editTextJumlah);
         editTextDeskripsi = (EditText) findViewById(R.id.editTextJumlah);
         radioButtonSaya = (RadioButton) findViewById(R.id.radioButtonSaya);
-        radioButtonSaya.setEnabled(true);
         radioButtonDia = (RadioButton) findViewById(R.id.radioButtonDia);
     }
 
     public void simpanCatatanHutang (View v) {
         HutangController.create(
-            editTextSiapa.getText().toString(), radioButtonSaya.isSelected(), Integer.parseInt(editTextJumlah.getText().toString()), editTextDeskripsi.getText().toString()
+            editTextSiapa.getText().toString(), radioButtonSaya.isChecked(), Integer.parseInt(editTextJumlah.getText().toString()), editTextDeskripsi.getText().toString()
         );
 
         finish();
