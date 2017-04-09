@@ -24,6 +24,7 @@ import com.basithdj.catatanhutang.controllers.HutangController;
 import com.basithdj.catatanhutang.models.Hutang;
 import com.basithdj.catatanhutang.views.activities.hutang.EditHutangActivity;
 import com.basithdj.catatanhutang.views.adapters.HutangAdapter;
+import com.basithdj.catatanhutang.views.dialogs.BayarHutangDialog;
 import com.basithdj.catatanhutang.views.dialogs.HutangDialog;
 
 import io.realm.Realm;
@@ -75,44 +76,14 @@ MainActivity extends AppCompatActivity
                             public void onDismiss(DialogInterface dialog) {
                                 loadCatatanHutang();
                             }
-                        })
-                        .setNegativeButton("Edit", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Intent intent = new Intent(MainActivity.this, EditHutangActivity.class);
-                                intent.putExtra("hutang_id", hutang.getId());
-
-                                startActivity(intent);
-                            }
-                        })
-                        .setNeutralButton("Delete", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                new AlertDialog.Builder(MainActivity.this)
-                                        .setTitle("Anda yakin akan menghapus?")
-                                        .setPositiveButton("Hapus", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                HutangController.delete(hutang.getId());
-                                                loadCatatanHutang();
-                                            }
-                                        }).show();
-                            }
-                        })
-                        .setPositiveButton("Bayar", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
-                        })
-                        .show();
+                        }).show();
             }
         });
         hutangAdapter = new HutangAdapter(this);
         listViewCatatanHutang.setAdapter(hutangAdapter);
     }
 
-    private void loadCatatanHutang() {
+    public void loadCatatanHutang() {
         hutangAdapter.refresh();
         hutangAdapter.notifyDataSetChanged();
     }
