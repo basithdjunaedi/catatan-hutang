@@ -32,4 +32,14 @@ public class HutangController extends RealmController {
     public static RealmResults<Hutang> getAll () {
         return realm.where(Hutang.class).findAllSorted("id", false);
     }
+
+    public static void delete (final int id) {
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                Hutang hutang = realm.where(Hutang.class).equalTo("id", id).findFirst();
+                hutang.removeFromRealm();
+            }
+        });
+    }
 }

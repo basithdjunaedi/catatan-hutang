@@ -62,12 +62,9 @@ public class HutangAdapter extends BaseAdapter {
 
         Hutang hutang = (Hutang) getItem(position);
         textViewJudul.setText(hutang.getSiapa());
-        textViewJumlah.setText("Rp, " + hutang.getJumlah());
+        textViewJumlah.setText("Rp. " + hutang.getJumlah());
 
-        if (hutang.isSaya_hutang()) {
-            textViewJumlah.setTextColor(Color.RED);
-        }
-
+        textViewJumlah.setTextColor(hutang.isSaya_hutang() ? Color.RED : Color.GREEN);
         return view;
     }
 

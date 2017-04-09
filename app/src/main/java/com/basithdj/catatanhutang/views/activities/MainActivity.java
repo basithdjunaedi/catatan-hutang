@@ -1,5 +1,7 @@
 package com.basithdj.catatanhutang.views.activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -64,16 +66,51 @@ MainActivity extends AppCompatActivity
         listViewCatatanHutang.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                HutangAdapter adapter = (HutangAdapter) listViewCatatanHutang.getAdapter();
-                new HutangDialog(MainActivity.this, (Hutang) adapter.getItem(position)).show();
+                final HutangAdapter adapter = (HutangAdapter) listViewCatatanHutang.getAdapter();
+                final Hutang hutang = (Hutang) adapter.getItem(position);
+                new HutangDialog(MainActivity.this, hutang)
+                        .setOnDismissListener(new DialogInterface.OnDismissListener() {
+                            @Override
+                            public void onDismiss(DialogInterface dialog) {
+                                loadCatatanHutang();
+                            }
+                        })
+                        .setNegativeButton("Edit", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                        .setNeutralButton("Delete", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                new AlertDialog.Builder(MainActivity.this)
+                                        .setTitle("Anda yakin akan menghapus?")
+                                        .setPositiveButton("Hapus", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                HutangController.delete(hutang.getId());
+                                                loadCatatanHutang();
+                                            }
+                                        }).show();
+                            }
+                        })
+                        .setPositiveButton("Bayar", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        })
+                        .show();
             }
         });
         hutangAdapter = new HutangAdapter(this);
+        listViewCatatanHutang.setAdapter(hutangAdapter);
     }
 
     private void loadCatatanHutang() {
         hutangAdapter.refresh();
-        listViewCatatanHutang.setAdapter(hutangAdapter);
+        hutangAdapter.notifyDataSetChanged();
     }
 
     @Override
