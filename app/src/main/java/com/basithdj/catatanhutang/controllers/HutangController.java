@@ -29,8 +29,25 @@ public class HutangController extends RealmController {
 
     }
 
+    public static Hutang getHutangById (int id) {
+        return realm.where(Hutang.class).equalTo("id", id).findFirst();
+    }
+
     public static RealmResults<Hutang> getAll () {
         return realm.where(Hutang.class).findAllSorted("id", false);
+    }
+
+    public static void update (final Hutang hutang, final String siapa, final boolean saya_hutang, final int jumlah, final String deskripsi) {
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                hutang.setSiapa(siapa);
+                hutang.setSaya_hutang(saya_hutang);
+                hutang.setJumlah(jumlah);
+                hutang.setDeskripsi(deskripsi);
+                realm.copyToRealmOrUpdate(hutang);
+            }
+        });
     }
 
     public static void delete (final int id) {

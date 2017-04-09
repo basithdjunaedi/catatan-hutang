@@ -21,7 +21,7 @@ public class CreateHutangActivity extends AppCompatActivity {
 
         editTextSiapa = (EditText) findViewById(R.id.editTextSiapa);
         editTextJumlah = (EditText) findViewById(R.id.editTextJumlah);
-        editTextDeskripsi = (EditText) findViewById(R.id.editTextJumlah);
+        editTextDeskripsi = (EditText) findViewById(R.id.editTextDeskripsi);
         radioButtonSaya = (RadioButton) findViewById(R.id.radioButtonSaya);
         radioButtonDia = (RadioButton) findViewById(R.id.radioButtonDia);
     }

@@ -39,6 +39,9 @@ public class HutangDialog extends AlertDialog.Builder {
         TextView textViewJumlah = (TextView) view.findViewById(R.id.textViewJumlah);
         textViewJumlah.setText("Rp. " + hutang.getJumlah());
 
+        TextView textViewDeskripsi = (TextView) view.findViewById(R.id.textViewDeskripsi);
+        textViewDeskripsi.setText(hutang.getDeskripsi());
+
         if (hutang.isSaya_hutang()) {
             textViewJumlah.setTextColor(Color.RED);
         }

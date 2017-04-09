@@ -22,6 +22,7 @@ import com.basithdj.catatanhutang.R;
 import com.basithdj.catatanhutang.views.activities.hutang.CreateHutangActivity;
 import com.basithdj.catatanhutang.controllers.HutangController;
 import com.basithdj.catatanhutang.models.Hutang;
+import com.basithdj.catatanhutang.views.activities.hutang.EditHutangActivity;
 import com.basithdj.catatanhutang.views.adapters.HutangAdapter;
 import com.basithdj.catatanhutang.views.dialogs.HutangDialog;
 
@@ -78,7 +79,10 @@ MainActivity extends AppCompatActivity
                         .setNegativeButton("Edit", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(MainActivity.this, EditHutangActivity.class);
+                                intent.putExtra("hutang_id", hutang.getId());
 
+                                startActivity(intent);
                             }
                         })
                         .setNeutralButton("Delete", new DialogInterface.OnClickListener() {
