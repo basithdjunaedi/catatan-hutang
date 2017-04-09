@@ -28,12 +28,6 @@ public class HutangDialog extends AlertDialog.Builder {
         this.hutang = hutang;
         final Context finalContext = context;
         setTitle(hutang.getSiapa());
-//        setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                Toast.makeText(finalContext, "Enjek!", Toast.LENGTH_SHORT).show();
-//            }
-//        });
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_hutang, null);
 
         TextView textViewJumlah = (TextView) view.findViewById(R.id.textViewJumlah);

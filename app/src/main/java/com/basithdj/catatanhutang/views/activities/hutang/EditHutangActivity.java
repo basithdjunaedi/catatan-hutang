@@ -43,7 +43,6 @@ public class EditHutangActivity extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
         hutang = HutangController.getHutangById(bundle.getInt("hutang_id"));
 
-        Toast.makeText(this, editTextJumlah.toString(), Toast.LENGTH_SHORT).show();
         editTextSiapa.setText(hutang.getSiapa());
         editTextJumlah.setText("" + hutang.getJumlah());
         editTextDeskripsi.setText(hutang.getDeskripsi());
