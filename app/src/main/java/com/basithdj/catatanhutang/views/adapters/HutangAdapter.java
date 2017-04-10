@@ -3,6 +3,7 @@ package com.basithdj.catatanhutang.views.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import com.basithdj.catatanhutang.R;
 import com.basithdj.catatanhutang.controllers.HutangController;
 import com.basithdj.catatanhutang.models.Hutang;
+import com.basithdj.catatanhutang.models.Pembayaran;
 
 import io.realm.RealmResults;
 
@@ -59,12 +61,21 @@ public class HutangAdapter extends BaseAdapter {
 
         TextView textViewJudul = (TextView) view.findViewById(R.id.textViewJudul);
         TextView textViewJumlah = (TextView) view.findViewById(R.id.textViewJumlah);
+        TextView textViewSisaHutang = (TextView) view.findViewById(R.id.textViewSisaHutang);
 
         Hutang hutang = (Hutang) getItem(position);
         textViewJudul.setText(hutang.getSiapa());
         textViewJumlah.setText("Rp. " + hutang.getJumlah());
-
         textViewJumlah.setTextColor(hutang.isSaya_hutang() ? Color.RED : Color.GREEN);
+
+        Log.d("catatan", hutang.getPembayaren().toString());
+
+        if (HutangController.getJumlahTerbayar(hutang) > 0) {
+            textViewSisaHutang.setText("Sisa: Rp. " + (hutang.getJumlah() - HutangController.getJumlahTerbayar(hutang)));
+        } else {
+            textViewSisaHutang.setText("belum dibayar.");
+        }
+
         return view;
     }
 

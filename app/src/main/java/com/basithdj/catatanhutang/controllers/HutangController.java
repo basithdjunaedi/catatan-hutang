@@ -2,6 +2,7 @@ package com.basithdj.catatanhutang.controllers;
 
 import android.util.Log;
 
+import com.basithdj.catatanhutang.models.Pembayaran;
 import com.basithdj.catatanhutang.views.activities.MainActivity;
 import com.basithdj.catatanhutang.models.Hutang;
 
@@ -58,5 +59,28 @@ public class HutangController extends RealmController {
                 hutang.removeFromRealm();
             }
         });
+    }
+
+    public static void bayarHutang (final Hutang hutang, final int jumlah) {
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                int lastIdPembayaran = (int) realm.where(Pembayaran.class).maximumInt("id");
+                Pembayaran pembayaran = new Pembayaran(lastIdPembayaran + 1, jumlah);
+                realm.copyToRealm(pembayaran);
+
+                hutang.getPembayaren().add(pembayaran);
+            }
+        });
+    }
+
+    public static int getJumlahTerbayar (Hutang hutang) {
+        int total = 0;
+
+        for (Pembayaran pembayaran : hutang.getPembayaren()) {
+            total += pembayaran.getJumlah();
+        }
+
+        return total;
     }
 }

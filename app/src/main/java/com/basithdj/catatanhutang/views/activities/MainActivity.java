@@ -45,7 +45,7 @@ MainActivity extends AppCompatActivity
 
         RealmConfiguration configuration = new RealmConfiguration.Builder(this)
                 .name(Realm.DEFAULT_REALM_NAME)
-                .schemaVersion(1)
+                .schemaVersion(3)
                 .deleteRealmIfMigrationNeeded()
                 .build();
 

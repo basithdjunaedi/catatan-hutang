@@ -1,5 +1,10 @@
 package com.basithdj.catatanhutang.models;
 
+import android.util.Log;
+
+import com.basithdj.catatanhutang.views.activities.MainActivity;
+
+import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.Ignore;
 import io.realm.annotations.PrimaryKey;
@@ -16,6 +21,8 @@ public class Hutang extends RealmObject {
     private boolean saya_hutang;
     private int jumlah;
     private String deskripsi;
+
+    private RealmList<Pembayaran> pembayaren;
 
     public Hutang () {
     }
@@ -66,5 +73,13 @@ public class Hutang extends RealmObject {
 
     public void setDeskripsi(String deskripsi) {
         this.deskripsi = deskripsi;
+    }
+
+    public RealmList<Pembayaran> getPembayaren() {
+        return pembayaren;
+    }
+
+    public void setPembayaren(RealmList<Pembayaran> pembayaren) {
+        this.pembayaren = pembayaren;
     }
 }
