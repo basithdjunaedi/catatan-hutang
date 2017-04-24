@@ -17,6 +17,8 @@ import com.basithdj.catatanhutang.models.Hutang;
 import com.basithdj.catatanhutang.views.activities.MainActivity;
 import com.basithdj.catatanhutang.views.activities.hutang.EditHutangActivity;
 
+import org.w3c.dom.Text;
+
 /**
  * Created by basithdj on 4/8/17.
  */
