@@ -6,22 +6,18 @@
             android:id="@+id/nav_hutang"
             android:icon="@drawable/ic_menu_hutang"
             android:title="Hutang" />
-
-
-
-            <item
-                android:id="@+id/nav_manage_people"
-                android:icon="@drawable/ic_menu_manage_people"
-                android:title="Manage People" />
-            <item
-                android:id="@+id/nav_settings"
-                android:icon="@drawable/ic_menu_settings"
-                android:title="Setting" />
-
-            <item
-                android:id="@+id/nav_about"
-                android:icon="@drawable/ic_menu_about"
-                android:title="About" />
+        <item
+            android:id="@+id/nav_manage_people"
+            android:icon="@drawable/ic_menu_manage_people"
+            android:title="Tambah Orang" />
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_menu_settings"
+            android:title="@string/settings" />
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/ic_menu_about"
+            android:title="Info Aplikasi" />
     </group>
 
 </menu>

@@ -26,7 +26,9 @@ import com.basithdj.catatanhutang.controllers.HutangController;
 import com.basithdj.catatanhutang.models.Hutang;
 import com.basithdj.catatanhutang.views.activities.hutang.EditHutangActivity;
 import com.basithdj.catatanhutang.views.activities.people.PeopleActivity;
+import com.basithdj.catatanhutang.views.activities.setting.SettingActivity;
 import com.basithdj.catatanhutang.views.adapters.HutangAdapter;
+import com.basithdj.catatanhutang.views.dialogs.AboutDialog;
 import com.basithdj.catatanhutang.views.dialogs.BayarHutangDialog;
 import com.basithdj.catatanhutang.views.dialogs.HutangDialog;
 
@@ -41,6 +43,7 @@ MainActivity extends AppCompatActivity
     public static final String LOG_TITLE = "catatan_hutang";
     private ListView listViewCatatanHutang;
     private HutangAdapter hutangAdapter;
+    private Intent setting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,6 +127,8 @@ MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            setting = new Intent(this, SettingActivity.class);
+            this.startActivity(setting);
             return true;
         }
 
@@ -137,16 +142,19 @@ MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_hutang) {
+
+        } else if (id == R.id.nav_manage_people) {
             Intent hutang = new Intent(this, PeopleActivity.class);
             this.startActivity(hutang);
             return true;
-        } else if (id == R.id.nav_manage_people) {
-
 
         } else if (id == R.id.nav_settings) {
+            setting = new Intent(this, SettingActivity.class);
+            this.startActivity(setting);
+            return true;
 
         } else if (id == R.id.nav_about) {
-
+            new AboutDialog(this).show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
