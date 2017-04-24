@@ -19,10 +19,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".views.activities.hutang.CreateHutangActivity"
-            android:parentActivityName=".views.activities.MainActivity"></activity>
-        <activity android:name=".views.activities.hutang.EditHutangActivity"
-            android:parentActivityName=".views.activities.MainActivity"></activity>
+        <activity
+            android:name=".views.activities.hutang.CreateHutangActivity"
+            android:parentActivityName=".views.activities.MainActivity" />
+        <activity
+            android:name=".views.activities.hutang.EditHutangActivity"
+            android:parentActivityName=".views.activities.MainActivity" />
+        <activity android:name=".views.activities.people.PeopleActivity"></activity>
     </application>
 
 </manifest>

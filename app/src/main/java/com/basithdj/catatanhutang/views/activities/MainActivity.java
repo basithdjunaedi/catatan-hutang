@@ -25,6 +25,7 @@ import com.basithdj.catatanhutang.views.activities.hutang.CreateHutangActivity;
 import com.basithdj.catatanhutang.controllers.HutangController;
 import com.basithdj.catatanhutang.models.Hutang;
 import com.basithdj.catatanhutang.views.activities.hutang.EditHutangActivity;
+import com.basithdj.catatanhutang.views.activities.people.PeopleActivity;
 import com.basithdj.catatanhutang.views.adapters.HutangAdapter;
 import com.basithdj.catatanhutang.views.dialogs.BayarHutangDialog;
 import com.basithdj.catatanhutang.views.dialogs.HutangDialog;
@@ -136,8 +137,11 @@ MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_hutang) {
-            // Handle the camera action
+            Intent hutang = new Intent(this, PeopleActivity.class);
+            this.startActivity(hutang);
+            return true;
         } else if (id == R.id.nav_manage_people) {
+
 
         } else if (id == R.id.nav_settings) {
 
